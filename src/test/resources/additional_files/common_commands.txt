@@ -1,2 +1,0 @@
-maven run configuration: mvn clean test -D browser=chrome -D suite=common.xml -Dtags=login -D parallel=classes -D preserve_order=true -D threads=1 -D env=http://pubcdev.nbcuext.com -D spring.profiles.active=sauce
-docker run kirylzayets/automation:mvn_clean 'git pull;mvn clean test -D browser='"${browser}"' -D suite='"${suite}" '-Dtags='"${tags}"' -D parallel='"${parallel}"' -D preserve_order='"${preserve_order}"' -D threads='"${threads}"' -D env='"${env}"' -D spring.profiles.active='"${spring.profiles.active}"\"
