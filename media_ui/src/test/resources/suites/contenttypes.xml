@@ -1,0 +1,11 @@
+<suite name="Pubcentral common place start with" preserve-order="${preserve_order}" parallel="classes" thread-count="1">
+    <listeners>
+        <listener class-name="com.poc.pubcentral.common.driver.listeners.TestListeners"/>
+    </listeners>
+
+    <test name="Create content types suite">
+        <classes>
+            <class name="com.poc.pubcentral.tests.contenttypes.CreateSeries"></class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nbcuni.pubcentral.bo">
+    <class name="com.poc.pubcentral.bo.SeriesPojo" table="SERIES">
+
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        <property name="title" column="TITLE" type="text"/>
+        <property name="subhead" column="SUBHEAD" type="text"/>
+        <property name="shortDescription" column="SHORT_DESCRIPTION" type="text"/>
+        <property name="mediumDescription" column="MEDIUM_DESCRIPTION" type="text"/>
+        <property name="longDescription" column="LONG_DESCRIPTION" type="text"/>
+        <property name="genre" column="GENRE"/>
+        <property name="rating" column="RATING"/>
+        <property name="unscripted" column="UNSCRIPTED"/>
+        <property name="programStatus" column="PROGRAM_STATUS"/>
+        <property name="syndicated" column="SYNDICATED"/>
+        <property name="seriesType" column="SERIES_TYPE"/>
+        <property name="relatedSeries" column="RELATED_SERIES"/>
+        <property name="scheduledDuration" column="SCHEDULED_DURATION"/>
+        <property name="programmingTimeFram" column="PROGRAMMING_TIMEFRAM"/>
+        <property name="categories" column="CATEGORIES"/>
+        <property name="tags" column="TAGS"/>
+        <property name="externalLink" column="EXTERNAL_LINK"/>
+    </class>
+</hibernate-mapping>

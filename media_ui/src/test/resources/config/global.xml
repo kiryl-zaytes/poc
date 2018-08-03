@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.nbcuni"/>
+    <aop:aspectj-autoproxy/>
+
+    <import resource="hsql_hibernate.xml"/>
+    <!--
+        Listeners section
+    !-->
+    <bean class="com.poc.pubcentral.common.driver.listeners.TestListeners">
+        <property name="context" ref="seleniumContext"/>
+    </bean>
+
+
+    <bean class="com.poc.pubcentral.common.driver.listeners.TestListeners">
+        <property name="sauceRest" ref="rest"/>
+    </bean>
+
+    <bean id="rest" class="com.saucelabs.saucerest.SauceREST">
+        <constructor-arg name="username" value="${sauce.user}"/>
+        <constructor-arg name="accessKey" value="${sauce.key}"/>
+    </bean>
+    <!--
+        PostProcessors section
+    !-->
+    <bean class="com.poc.pubcentral.common.driver.bpp.PagePostProcessor"/>
+    <bean class="com.poc.pubcentral.common.driver.bpp.CapabilitiesPostProcessor"/>
+    <bean class="com.poc.pubcentral.common.driver.bpp.LoggableBeanPostProcessor"/>
+    <!--
+     AOP section
+    !-->
+
+    <!--
+     General objects section
+    !-->
+    <bean id="admin" class="com.poc.pubcentral.bo.UserPojo">
+        <constructor-arg name="name" value="${user.pubcentral}"/>
+        <constructor-arg name="pass" value="${user.pass}"/>
+    </bean>
+    <!--
+    Configuration section
+   !-->
+    <bean id="simpleThreadScope" class="org.springframework.context.support.SimpleThreadScope"/>
+
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="thread" value-ref="simpleThreadScope">
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="propertyLoader" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>settings/general.properties</value>
+                <value>settings/pagemapping.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="uniqueLaunchId" class="java.lang.String">
+        <constructor-arg value="#{ T(java.lang.String).valueOf(T(java.lang.Math).random()).substring(2,15)}"/>
+    </bean>
+
+</beans>
