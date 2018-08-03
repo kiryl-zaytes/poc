@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nbcuni.pubcentral.bo">
+    <class name="com.poc.pubcentral.bo.ImagePojo" table="IMAGE">
+
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        <property name="title" column="TITLE" type="text"/>
+        <property name="caption" column="CAPTION" type="text"/>
+        <property name="description" column="DESCRIPTION" type="text"/>
+        <property name="hiRes" column="HI_RES" type="text"/>
+        <property name="altText" column="ALT_TEXT"/>
+        <property name="credit" column="CREDIT"/>
+        <property name="copyright" column="COPYRIGHT"/>
+        <property name="source" column="SOURCE"/>
+        <property name="series" column="SERIES"/>
+        <property name="season" column="SEASON"/>
+        <property name="episode" column="EPISODE"/>
+        <property name="publisherId" column="PUBLISHER_ID"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="createTime" column="CREATE_TIME"/>
+        <property name="categories" column="CATEGORIES"/>
+        <property name="tags" column="TAGS"/>
+        <property name="fileName" column="FILE_NAME"/>
+
+    </class>
+</hibernate-mapping>
