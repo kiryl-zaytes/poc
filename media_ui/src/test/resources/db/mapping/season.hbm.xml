@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nbcuni.pubcentral.bo">
+    <class name="com.poc.pubcentral.bo.SeasonPojo" table="SEASON">
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        <property name="title" column="TITLE"/>
+        <property name="subhead" column="SUBHEAD" type="text"/>
+        <property name="shortDescription" column="SHORT_DESCRIPTION" type="text"/>
+        <property name="mediumDescription" column="MEDIUM_DESCRIPTION" type="text"/>
+        <property name="longDescription" column="LONG_DESCRIPTION" type="text"/>
+        <property name="productionNumber" column="PRODUCTION_NUMBER"/>
+        <property name="seasonNumber" column="SEASON_NUMBER"/>
+        <property name="seasonDate" column="SEASON_DATE"/>
+        <property name="categories" column="CATEGORIES"/>
+        <property name="tags" column="TAGS"/>
+        <property name="externalLink" column="EXTERNAL_LINK"/>
+    </class>
+</hibernate-mapping>
