@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="EE" preserve-order="true" parallel="classes"
+	thread-count="1">
+	<test name="Regression list">
+		<classes>
+			<class name="uk.ee.tests.my_ee.PurchasePayGPacks"></class>
+			<class name="uk.ee.tests.my_ee.PayPartialAmountExistingUserAndCard"></class>
+			<class name="uk.ee.tests.my_ee.SetUpPaygTopUpAlert"></class>
+			<class name="uk.ee.tests.my_ee.SetUpPayMBillAlerts"></class>
+			<class name="uk.ee.tests.my_ee.SetupDirectDebit"></class>
+			<class name="uk.ee.tests.my_ee.EditDirectDebit"></class>
+			<class name="uk.ee.tests.my_ee.UpdateContentLockPayM"></class>
+			<class name="uk.ee.tests.my_ee.UpdateDeviceUsageControls"></class>
+			<class name="uk.ee.tests.my_ee.UpdateGroupUsageControlSharer"></class>
+			<class name="uk.ee.tests.my_ee.ValidateDashboardPagePayG"></class>
+			<class name="uk.ee.tests.my_ee.ValidateDashboardPagePayM"></class>
+			<class name="uk.ee.tests.my_ee.ViewPayMCurrentBillDetails"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePaygTopUpHistory"></class>
+			<class name="uk.ee.tests.my_ee.ValidateDashboardPageSB"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePayGAddOnPurchase"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePaygAllowances"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePaygMbbDashboardAllowance"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePayMAddOnPurchase"></class>
+			<class name="uk.ee.tests.my_ee.ValidatePayMAddOnRemoval"></class>
+			<class name="uk.ee.tests.my_ee.ValidateSuccessfulPayGTopUpExistingCard"></class>
+			<class name="uk.ee.tests.my_ee.ValidateSuccessfulPayGTopUpNewCard"></class>
+			<class name="uk.ee.tests.my_ee.ViewPaymAllowances"></class>
+			<class name="uk.ee.tests.my_ee.ViewSBAllowances"></class>
+			<class name="uk.ee.tests.my_ee.ViewSBCurrentBillDetails"></class>
+			<class name="uk.ee.tests.my_ee.PaygManageCards"></class>
+		</classes>
+	</test>
+</suite>

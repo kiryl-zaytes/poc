@@ -1,0 +1,9 @@
+<suite name="EE" preserve-order="true" parallel="classes"
+       thread-count="1">
+    <test name="Regression list">
+        <classes>
+            <class name="uk.ee.tests.shop.smoke.MultipleGalleries"></class>
+            <class>uk.ee.tests.shop.smoke.PaymPhoneAcquisitionOrder</class>
+        </classes>
+    </test>
+</suite>
