@@ -1,0 +1,35 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Chiller TV Acceptance Test Suite" verbose="1" parallel="tests" thread-count="1">
+
+    <test name="Video Details Page Test" enabled="true">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.VideoDetailsPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Event Details Page Test" enabled="true">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.EventDetailsPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Season Details Page Test" enabled="true">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.SeasonDetailsPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Series Details Page Test" enabled="true">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.SeriesDetailsPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Episode Details Page Test" enabled="true">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.EpisodeDetailsPageTest"/>
+        </classes>
+    </test>
+
+</suite>

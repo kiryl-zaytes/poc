@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <context:component-scan base-package="com.nbc.testautomation.chillertv"/>
+
+    <bean name="httpProvider" class="com.nbc.testautomation.http.RestTemplateHttpProvider" scope="singleton"/>
+
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="thread-local">
+                    <bean class="org.springframework.context.support.SimpleThreadScope"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Default profile name is 'default' -->
+    <!-- Use '-Dspring.profiles.active=<profile name>' to specify profile-->
+    <beans profile="default,local">
+
+        <!-- TODO investigate, whether properties configurer affected by multi threading and which kind of exceptions are possible -->
+        <bean id="localProperties" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>classpath:profile/local-environment.properties</value>
+                    <value>classpath:api/endpoints.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <!-- Defining desired capabilities as prototype to avoid collisions in multi threading, e.g. access to object while it's destroying, etc. -->
+        <bean name="localDesiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities" scope="prototype">
+            <constructor-arg>
+                <map>
+                    <entry key="browserName" value="${webdriver.browser.name}"/>
+                    <entry key="browserVersion" value="${webdriver.browser.version}"/>
+                    <entry key="platform" value="${webdriver.platform.name}"/>
+                </map>
+            </constructor-arg>
+        </bean>
+
+        <bean name="localExtendedWebDriver"
+              class="com.nbc.testautomation.webdriver.factory.ExtendedWebDriverFactoryBean"
+              scope="thread-local">
+            <property name="desiredCapabilities" ref="localDesiredCapabilities"/>
+        </bean>
+    </beans>
+
+    <beans profile="saucelabs">
+        <bean id="saucelabsProperties" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>classpath:profile/saucelabs-environment.properties</value>
+                    <value>classpath:api/endpoints.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <bean name="saucelabsDesiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"
+              scope="prototype">
+            <constructor-arg>
+                <map>
+                    <entry key="browserName" value="${webdriver.browser.name}"/>
+                    <entry key="browserVersion" value="${webdriver.browser.version}"/>
+                    <entry key="platform" value="${webdriver.platform.name}"/>
+                    <entry key="saucelabs.username" value="${saucelabs.username}"/>
+                    <entry key="saucelabs.access_key" value="${saucelabs.access_key}"/>
+                    <!-- saucelabs tags -->
+                    <entry key="tags" value="chiller"/>
+                </map>
+            </constructor-arg>
+        </bean>
+
+        <bean name="saucelabsExtendedWebDriver"
+              class="com.nbc.testautomation.webdriver.factory.ExtendedWebDriverFactoryBean"
+              scope="thread-local">
+            <property name="desiredCapabilities" ref="saucelabsDesiredCapabilities"/>
+        </bean>
+
+        <bean name="sauceREST" class="com.saucelabs.saucerest.SauceREST">
+            <constructor-arg value="${saucelabs.username}"/>
+            <constructor-arg value="${saucelabs.access_key}"/>
+        </bean>
+    </beans>
+
+    <beans profile="default,api-data">
+        <bean name="apiVideoRepository" class="com.nbc.testautomation.chillertv.data.ApiVideoRepository"/>
+        <bean name="apiSeriesRepository" class="com.nbc.testautomation.chillertv.data.ApiSeriesRepository"/>
+        <bean name="apiEpisodeRepository" class="com.nbc.testautomation.chillertv.data.ApiEpisodeRepository"/>
+        <bean name="apiEventRepository" class="com.nbc.testautomation.chillertv.data.ApiEventRepository"/>
+        <bean name="apiSeasonRepository" class="com.nbc.testautomation.chillertv.data.ApiSeasonRepository"/>
+    </beans>
+
+    <beans profile="google-sheets-data">
+        <bean name="googleSheetsVideoRepository"
+              class="com.nbc.testautomation.chillertv.data.GoogleSheetsVideoRepository"/>
+        <bean name="googleSheetsSeriesRepository"
+              class="com.nbc.testautomation.chillertv.data.GoogleSheetsSeriesRepository"/>
+        <bean name="googleSheetsEpisodeRepository"
+              class="com.nbc.testautomation.chillertv.data.GoogleSheetsEpisodeRepository"/>
+        <bean name="googleSheetsEventRepository"
+              class="com.nbc.testautomation.chillertv.data.GoogleSheetsEventRepository"/>
+        <bean name="googleSheetsSeasonRepository"
+              class="com.nbc.testautomation.chillertv.data.GoogleSheetsSeasonRepository"/>
+    </beans>
+
+</beans>

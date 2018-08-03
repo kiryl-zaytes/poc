@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Chiller TV Sample Test Suite" verbose="1">
+
+    <test name="Chiller TV Sample Test">
+        <classes>
+            <class name="com.nbc.testautomation.chillertv.SampleChillerTvTest"/>
+        </classes>
+    </test>
+
+</suite>
