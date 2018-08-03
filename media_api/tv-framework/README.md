@@ -40,6 +40,3 @@ Below is described which steps to perform to retrieve the data from Chiller TV A
 1. Put these classes to appropriate place into `com.nbc.testautomation.chillertv.support.api.pojo` package
 1. Add endpoint path to `src/test/resources/api/endpoints.properties` file and to `com.nbc.testautomation.chillertv.support.api.ApiEndpoints` class
 1. Implement corresponding method in corresponding API service class. See example in `com.nbc.testautomation.chillertv.service.video.VideoApiService`. To send GET HTTP-request use method _get()_ of interface `com.nbc.testautomation.http.HttpProvider`. Currently on implementation of this interface is available: `com.nbc.testautomation.http.RestTemplateHttpProvider`. Feel free to use your uwn if it's reasonable. In described case [RestTemplate] (https://spring.io/guides/gs/consuming-rest/) will take responsibility for mapping JSON to POJO classes, so the POJO object filled with API data will be returned.  
-1. Classes like `com.nbc.testautomation.chillertv.support.ObjectConverter` are aimed to convert data form POJO to domain model business objects. Feel free to use some custom algorithms.
-1. As a result, API service will return business object of application domain model. Then it can be compared with data which is comming from API
-
