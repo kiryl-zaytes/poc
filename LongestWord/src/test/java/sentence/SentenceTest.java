@@ -10,6 +10,8 @@ import java.util.HashSet;
 
 /**
  * TestNg class to test basic behavior of longest word functionality;
+ * Tests like return one of same length, buffer overflow, all of same length
+ * could be added later when req are clear enough.
  */
 
 public class SentenceTest {
