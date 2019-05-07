@@ -1,7 +1,7 @@
 package com.sentence;
 
 /**
- * Created by kiryl_zayets on 5/7/19.
+ * Structure for shaping result;
  */
 public class Pair {
     String word;
