@@ -17,7 +17,7 @@ import java.util.HashSet;
 public class SentenceTest {
     HashSet<Character> punc;
 
-    @Test(groups = "default")
+    @Test(groups = "default", description = "add more to force split")
     public void prepareSetOfPunctuation() {
         punc = new HashSet<Character>();
         punc.add('.');
