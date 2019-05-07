@@ -42,7 +42,7 @@ public class Sentence {
     // if there will be any other methods and we want to avoid sharing data
     // Simplest method as requested, not sure if method like split could be
     // used. Could be extended to choose from the words with same length.
-    
+
     public Pair getLongest() {
         String[] res = this.sentence.split("\\W+");
         for (String s : res)

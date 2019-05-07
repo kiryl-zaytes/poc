@@ -3,7 +3,6 @@ package sentence;
 import com.sentence.Pair;
 import com.sentence.Sentence;
 import com.sun.media.sound.InvalidFormatException;
-import org.junit.BeforeClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,7 +15,7 @@ import java.util.HashSet;
 public class SentenceTest {
     HashSet<Character> punc;
 
-    @BeforeClass
+    @Test(groups = "default")
     public void prepareSetOfPunctuation() {
         punc = new HashSet<Character>();
         punc.add('.');
@@ -26,17 +25,17 @@ public class SentenceTest {
         punc.add(',');
     }
 
-    @Test
-    public void testLongestWord() throws InvalidFormatException {
-        Sentence sentence = new Sentence("The cow jumped over the moon.");
-        Assert.assertEquals(sentence.getLongest(), new Pair(6, "jumped"));
-    }
-
-    @Test
+    @Test(dependsOnGroups = {"default"})
     public void testLongestWordDefault() throws InvalidFormatException {
         Sentence sentence = new Sentence("The cow jumped over the moon.", punc);
         Assert.assertEquals(sentence.getLongestDefault(), new Pair(6,
                 "jumped"));
+    }
+
+    @Test
+    public void testLongestWord() throws InvalidFormatException {
+        Sentence sentence = new Sentence("The cow jumped over the moon.");
+        Assert.assertEquals(sentence.getLongest(), new Pair(6, "jumped"));
     }
 
     @Test
